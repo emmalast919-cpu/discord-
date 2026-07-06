@@ -19,8 +19,8 @@ if (!SESSION_SECRET) console.error("[website] SESSION_SECRET is not set — add 
 // Set REDIRECT_URI env var on Vercel to your deployed URL.
 // Known dev URIs are matched by hostname so login works on Replit without config.
 const REDIRECT_URIS_BY_HOST = {
-  "https://df8e50ee-d7aa-4fcd-b94d-54a7617dd6ea-00-13vwx7vctkfk3.janeway.replit.dev/":
-    "https://df8e50ee-d7aa-4fcd-b94d-54a7617dd6ea-00-13vwx7vctkfk3.janeway.replit.dev/callback",
+  "https://discord-rouge-five.vercel.app/":
+    "https://discord-rouge-five.vercel.app/callback",
 };
 
 function getRedirectUri(req) {

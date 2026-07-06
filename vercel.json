@@ -16,7 +16,8 @@
           "icons.svg",
           "favicon.svg",
           "db.js",
-          "bot/logTypes.js"
+          "db-init.js",
+          "logTypes.js"
         ]
       }
     }

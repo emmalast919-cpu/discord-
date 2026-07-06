@@ -19,8 +19,8 @@ if (!SESSION_SECRET) console.error("[website] SESSION_SECRET is not set — add 
 // Set REDIRECT_URI env var on Vercel to your deployed URL.
 // Known dev URIs are matched by hostname so login works on Replit without config.
 const REDIRECT_URIS_BY_HOST = {
-  "https://discord-rouge-five.vercel.app/":
-    "https://discord-rouge-five.vercel.app/callback",
+  "https://discord-2ba2cbf76-emmalast919-cpus-projects.vercel.app/":
+    "https://discord-2ba2cbf76-emmalast919-cpus-projects.vercel.app/callback",
 };
 
 function getRedirectUri(req) {
@@ -45,6 +45,9 @@ app.use(express.json());
 app.set("trust proxy", 1);
 
 // ─── Static files (only these exact paths are served) ────────────────────────
+// Keyed by the actual filename on disk. ALIASES lets clean URLs like "/dash"
+// (Vercel's cleanUrls strips .html before Express ever sees the request) map
+// to the same file as "/dash.html".
 const STATIC = {
   "style.css":   "text/css",
   "app.js":      "application/javascript",
@@ -53,11 +56,16 @@ const STATIC = {
   "index.html":  "text/html",
   "dash.html":   "text/html",
 };
+const ALIASES = {
+  "dash":  "dash.html",
+  "index": "index.html",
+};
 app.get("/", (_req, res) => res.sendFile(path.join(__dirname, "index.html")));
 app.get("/:file", (req, res, next) => {
-  const mime = STATIC[req.params.file];
+  const file = ALIASES[req.params.file] || req.params.file;
+  const mime = STATIC[file];
   if (!mime) return next();
-  res.type(mime).sendFile(path.join(__dirname, req.params.file));
+  res.type(mime).sendFile(path.join(__dirname, file));
 });
 
 // ─── Session ─────────────────────────────────────────────────────────────────
@@ -261,3 +269,4 @@ async function start() {
 start().catch((err) => console.error("[website] startup error:", err.message));
 
 module.exports = app;
+  

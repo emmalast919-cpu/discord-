@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — LogHub</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-logo"><svg viewBox="0 0 24 24" fill="none"><use href="/icons.svg#server" stroke="currentColor"/></svg></div>
+    <div class="loader-ring"></div>
+    <span class="loader-text">Loading your dashboard…</span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a class="brand" href="/dash.html">
+      <img src="/favicon.svg" alt="LogHub" />
+      LogHub
+    </a>
+    <div id="userChip"></div>
+  </nav>
+
+  <!-- Server list -->
+  <div class="dash-wrap" id="serverListView">
+    <div class="page-header">
+      <h2>Your Servers</h2>
+      <p class="page-sub">Select a server to configure which events get logged and where.</p>
+    </div>
+    <div id="guildGrid" class="guild-grid"></div>
+  </div>
+
+  <!-- Guild log config -->
+  <div class="dash-wrap" id="guildDetailView" style="display:none">
+    <div class="detail-header">
+      <a class="back-btn" href="#" id="backLink">
+        <svg class="icon" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 4l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        All servers
+      </a>
+      <div class="detail-title-row">
+        <div id="guildAvatar" class="guild-avatar-sm"></div>
+        <h2 id="guildTitle">Server</h2>
+      </div>
+    </div>
+
+    <!-- Bulk actions -->
+    <div class="toolbar" id="bulkBar"></div>
+
+    <!-- Categories accordion -->
+    <div id="logList" class="log-list"></div>
+  </div>
+
+  <!-- Channel picker modal -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <span class="modal-title" id="modalTitle">Select a channel</span>
+        <button class="modal-x" id="modalClose" aria-label="Close">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16">
+            <path d="M4 4l12 12M16 4L4 16" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-search-row">
+        <svg class="icon" width="16" height="16" style="color:var(--muted)" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="9" r="5"/><path d="M14 14l3 3" stroke-linecap="round"/>
+        </svg>
+        <input id="modalSearch" class="modal-input" type="text" placeholder="Search channels…" autocomplete="off" />
+      </div>
+      <div class="modal-channel-list" id="modalChannels"></div>
+      <div class="modal-empty" id="modalEmpty">No channels found</div>
+    </div>
+  </div>
+
+  <!-- Unsaved changes bar -->
+  <div class="save-bar" id="saveBar">
+    <span class="save-bar-msg">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15" style="flex-shrink:0;color:#f59e0b">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+      </svg>
+      Careful — you have unsaved changes
+    </span>
+    <div class="save-bar-btns">
+      <button class="sbtn sbtn-ghost" id="resetBtn">Reset</button>
+      <button class="sbtn sbtn-save" id="saveBtn">Save changes</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

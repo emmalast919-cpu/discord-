@@ -54,7 +54,7 @@ const STATIC = {
   "icons.svg":   "image/svg+xml",
   "favicon.svg": "image/svg+xml",
   "index.html":  "text/html",
-  "dash.html":   "text/html",
+  "dash.html":   "dash/html",
 };
 const ALIASES = {
   "dash":  "dash.html",

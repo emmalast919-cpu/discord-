@@ -5,7 +5,7 @@ const fetch      = require("node-fetch");
 const path       = require("path");
 const db         = require("./db");
 const initDb     = require("./db-init");
-const { CATEGORIES, LEAF_TYPES } = require("./bot/logTypes");
+const { CATEGORIES, LEAF_TYPES } = require("./logTypes");
 
 const PORT           = process.env.PORT || 5000;
 const CLIENT_ID      = process.env.DISCORD_CLIENT_ID     || "1483829660461568173";
